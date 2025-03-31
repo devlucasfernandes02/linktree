@@ -1,121 +1,138 @@
-import { useEffect, useState} from 'react'
-import { Social } from '../../components/social'
+import { useEffect, useState } from "react";
+import { Social } from "../../components/social";
+import MyPhoto from "../../assets/FotoLilas.png";
 
-import {FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
-import { db } from '../../services/firebaseConnection'
-import { 
-    getDocs,
-    collection,
-    orderBy,
-    query,
-    doc,
-    getDoc
- } from 'firebase/firestore'
+import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import { db } from "../../services/firebaseConnection";
+import {
+  getDocs,
+  collection,
+  orderBy,
+  query,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
- interface LinkProps{
-    id: string;
-    name: string;
-    url: string;
-    bg: string;
-    color: string
- }
+interface LinkProps {
+  id: string;
+  name: string;
+  url: string;
+  bg: string;
+  color: string;
+}
 
- interface SocialLinksProps{
-    linkedin: string;
-    github: string;
-    instagram: string;
-
- }
+interface SocialLinksProps {
+  linkedin: string;
+  github: string;
+  instagram: string;
+}
 
 export function Home() {
+  const [links, setLinks] = useState<LinkProps[]>([]);
+  const [socialLinks, setSocialLinks] = useState<SocialLinksProps>();
 
-    const [links, setLinks] = useState<LinkProps[]>([]);
-    const [socialLinks, setSocialLinks] = useState<SocialLinksProps>();
+  useEffect(() => {
+    function loadLinks() {
+      const linksRef = collection(db, "links");
+      const queryRef = query(linksRef, orderBy("created", "asc"));
 
-    useEffect(() => {
-        function loadLinks(){
-            const linksRef = collection(db, "links")
-            const queryRef = query(linksRef, orderBy("created", "asc"))
+      getDocs(queryRef).then((snapshot) => {
+        let lista = [] as LinkProps[];
 
-            getDocs(queryRef)
-            .then((snapshot) => {
-                let lista = [] as LinkProps[];
+        snapshot.forEach((doc) => {
+          lista.push({
+            id: doc.id,
+            name: doc.data().name,
+            url: doc.data().url,
+            bg: doc.data().bg,
+            color: doc.data().color,
+          });
+        });
 
-                snapshot.forEach((doc) => {
-                    lista.push({
-                        id: doc.id,
-                        name: doc.data().name,
-                        url: doc.data().url,
-                        bg: doc.data().bg,
-                        color: doc.data().color
-                    })
-                })
+        setLinks(lista);
+      });
+    }
 
-                setLinks(lista);
-            })
+    loadLinks();
+  }, []);
+
+  useEffect(() => {
+    function loadSocialLinks() {
+      const docRef = doc(db, "social", "link");
+      getDoc(docRef).then((snapshot) => {
+        if (snapshot.data() !== undefined) {
+          setSocialLinks({
+            linkedin: snapshot.data()?.linkedin,
+            github: snapshot.data()?.github,
+            instagram: snapshot.data()?.instagram,
+          });
         }
+      });
+    }
 
-        loadLinks();
-    }, [])
+    loadSocialLinks();
+  }, []);
 
-    useEffect(() => {
-     function loadSocialLinks(){
-        const docRef = doc(db, "social", "link")
-        getDoc(docRef)
-        .then((snapshot)=> {
-            if(snapshot.data() !== undefined){
-                setSocialLinks({
-                    linkedin: (snapshot.data()?.linkedin),
-                    github: (snapshot.data()?.github),
-                    instagram: (snapshot.data()?.instagram)
-                })
-            }
-        })
-     }
+  return (
+    <div className="flex flex-col w-full py-4 items-center justify-center ">
+      <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-radial-1 opacity-50"></div>
+      <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-radial-2 opacity-50"></div>
 
-     loadSocialLinks();
-     
-    }, [])
+      <img
+        className="rounded-full w-44 md:w-56 border-2 border-violet-950 shadow-custom-shadow mt-20 mb-4"
+        src={MyPhoto}
+        alt="Minha Foto"
+      />
 
-    return (
-        <div className="flex flex-col w-full py-4 items-center justify-center">
-            <h1 className="md:text-4xl  text-3xl font-bold text-white mt-20">Dev Lucas Fernandes</h1>
-            <span className="text-gray-50 mb-5 mt-3">Veja meus links 👇</span>
+      <h1 className="md:text-4xl  text-3xl font-bold bg-gradient-to-b from-yellow-100 via-yellow-100 to-yellow-200 bg-clip-text text-transparent">
+        Dev Lucas Fernandes
+      </h1>
+      <span className="text-gray-50 mb-5 mt-3 ">Veja meus links 👇</span>
 
-            <main className="flex flex-col w-11/12 max-w-xl text-center">
-               {links.map((link) => (
-                <section 
-                style={{ backgroundColor: link.bg}}
-                key={link.id}
-                className=" bg-white mb-4 w-full py-2 rounded-lg select-none transition-transform hover:scale-105 cursor-pointer">
-                 <a href={link.url} target='blank'>
-                     <p className="text-base md:text-lg" style={{ color: link.color}}>
-                         {link.name}
-                     </p>
-                 </a>
-                </section>
-               ))}  
+      <main className="flex flex-col w-11/12 max-w-xl text-center">
+        {links.map((link) => (
+          <section
+            style={{ backgroundColor: link.bg }}
+            key={link.id}
+            className=" bg-white mb-4 w-full py-2 rounded-lg select-none transition-transform hover:scale-105 cursor-pointer"
+          >
+            <a href={link.url} target="blank">
+              <p className="text-base md:text-lg" style={{ color: link.color }}>
+                {link.name}
+              </p>
+            </a>
+          </section>
+        ))}
 
-              { socialLinks && Object.keys(socialLinks).length >0 && (
-                  <footer className="flex justify-center gap-3 my-4">
+        {socialLinks && Object.keys(socialLinks).length > 0 && (
+          <section className="flex justify-center gap-3 my-4">
+            <Social url={socialLinks?.linkedin}>
+              <FaLinkedin size={35} color="#FFF" />
+            </Social>
 
-                  <Social url={socialLinks?.linkedin}>
-                      <FaLinkedin size={35} color="#FFF"/>
-                  </Social>
+            <Social url={socialLinks?.github}>
+              <FaGithub size={35} color="#FFF" />
+            </Social>
 
-                  <Social url={socialLinks?.github}>
-                      <FaGithub size={35} color="#FFF"/>
-                  </Social>
-
-                  <Social url={socialLinks?.instagram}>
-                      <FaInstagram size={35} color="#FFF"/>
-                  </Social>
-
-              </footer>
-              )}
-
-            </main>
-
-        </div>
-    )
+            <Social url={socialLinks?.instagram}>
+              <FaInstagram size={35} color="#FFF" />
+            </Social>
+          </section>
+        )}
+      </main>
+      <footer className="mt-5 text-white flex items-center justify-center gap-2">
+        <p className="flex items-center gap-1">
+          © 2025 Desenvolvido por
+          <a
+            href="https://github.com/devlucasfernandes02"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet-400 hover:underline flex items-center gap-1"
+          >
+            Lucas Fernandes <FaGithub size={20} />
+          </a>
+        </p>
+      </footer>
+    </div>
+  );
 }
