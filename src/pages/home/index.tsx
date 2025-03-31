@@ -87,7 +87,6 @@ export function Home() {
       <h1 className="md:text-4xl  text-3xl font-bold bg-gradient-to-b from-yellow-100 via-yellow-200 to-yellow-300 bg-clip-text text-transparent">
         Dev Lucas Fernandes
       </h1>
-      <span className="text-gray-50 mb-5 mt-3 ">Veja meus links 👇</span>
 
       <main className="flex flex-col w-11/12 max-w-xl text-center">
         {links.map((link) => (
