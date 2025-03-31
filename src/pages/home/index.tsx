@@ -84,7 +84,7 @@ export function Home() {
         alt="Minha Foto"
       />
 
-      <h1 className="md:text-4xl  text-3xl font-bold bg-gradient-to-b from-yellow-100 via-yellow-200 to-yellow-300 bg-clip-text text-transparent">
+      <h1 className="md:text-4xl mb-5 text-3xl font-bold bg-gradient-to-b from-yellow-100 via-yellow-200 to-yellow-300 bg-clip-text text-transparent">
         Dev Lucas Fernandes
       </h1>
 
