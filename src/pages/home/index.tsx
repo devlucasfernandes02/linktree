@@ -120,7 +120,7 @@ export function Home() {
           </section>
         )}
       </main>
-      <footer className="mt-5 text-white flex items-center justify-center gap-2">
+      <footer className="mt-7 text-white flex items-center justify-center gap-2">
         <p className="flex items-center gap-1">
           © 2025 Desenvolvido por
           <a
