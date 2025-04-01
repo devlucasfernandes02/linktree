@@ -1,55 +1,69 @@
-<<<<<<< HEAD
-# linktree
-Links sobre Mim
-=======
-# React + TypeScript + Vite
+# 📌 Linktree - Sobre Mim
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto inspirado no Linktree, criado para compartilhar links e informações sobre mim.  
+Desenvolvido com **ReactJS**, **Vite**, **TypeScript** e **Firebase** para armazenamento de dados.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas  
 
-## Expanding the ESLint configuration
+🔹 **ReactJS** - Biblioteca para construção da interface do usuário.  
+🔹 **Vite** - Ferramenta de build rápida para projetos modernos.  
+🔹 **TypeScript** - Superset do JavaScript para tipagem estática.  
+🔹 **Firebase** - Banco de dados e autenticação.  
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠 Funcionalidades  
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+✔ **Autenticação de Admin**: Apenas o administrador pode gerenciar os links.  
+✔ **Rotas Protegidas**: Algumas páginas exigem login.  
+✔ **Banco de Dados Firebase**: Armazena os links dinâmicos.  
+✔ **Página de Erro**: Tratamento para rotas inexistentes.  
+
+---
+
+## 📌 Instalação e Uso  
+
+### 📂 Clonando o Repositório  
+
+```bash
+git clone https://github.com/devlucasfernandes02/nome-do-repositorio.git
+cd nome-do-repositorio
+
+📦 Instalando as Dependências
+
+npm install
+
+🔥 Rodando o Projeto
+
+npm run dev
+
+🔑 Configuração do Firebase
+
+1️⃣ Crie um projeto no Firebase.
+2️⃣ Ative o Firestore Database e Authentication.
+3️⃣ No painel do Firebase, gere as credenciais do seu projeto.
+4️⃣ Crie um arquivo .env na raiz do projeto e adicione suas credenciais:
+
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_SENDER_ID
+VITE_FIREBASE_APP_ID=YOUR_APP_ID
+
+5️⃣ Reinicie o servidor com:
+
+npm run dev 
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 📜 Licença
+Este projeto está sob a licença MIT.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
->>>>>>> 9f15166 (projeto linktree)
+# 👨‍💻 Autor
+👤 Lucas Fernandes
+📍 Desenvolvedor Full-Stack
+
+
