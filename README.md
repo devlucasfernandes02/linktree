@@ -28,10 +28,11 @@ Desenvolvido com **ReactJS**, **Vite**, **TypeScript** e **Firebase** para armaz
 ### 📂 Clonando o Repositório  
 
 ```bash
-git clone https://github.com/devlucasfernandes02/nome-do-repositorio.git
-cd nome-do-repositorio
+git clone https://github.com/devlucasfernandes02/linktree.git
+```
 
-📦 Instalando as Dependências
+### 📦 Instalando as Dependências
+```bash
 
 npm install
 
