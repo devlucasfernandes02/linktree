@@ -79,14 +79,15 @@ export function Home() {
       <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-radial-2 opacity-50"></div>
 
       <img
-        className="animate rounded-full w-44 md:w-56 border-2 border-violet-950 shadow-custom-shadow mt-20 mb-4"
+        className="animate rounded-full w-44 md:w-56 border-2 border-blue-900 shadow-custom-shadow mt-20 mb-4"
         src={MyPhoto}
         alt="Minha Foto"
       />
 
-      <h1 className="md:text-4xl mb-5 text-3xl font-bold bg-gradient-to-b from-yellow-100 via-yellow-200 to-yellow-300 bg-clip-text text-transparent">
-        Dev Lucas Fernandes
+      <h1 className="md:text-4xl mb-4 text-3xl font-bold bg-gradient-to-b from-white to-yellow-100 bg-clip-text text-transparent">
+        Lucas Fernandes
       </h1>
+      <p className="text-gray-50 mb-5 hover:underline">Full-Stack Software Developer</p>
 
       <main className="flex flex-col w-11/12 max-w-xl text-center">
         {links.map((link) => (

@@ -12,7 +12,7 @@ export default {
         'gradient-radial-2': 'radial-gradient(circle at 90% 80%, rgba(79, 70, 220, 0.2) 0%, transparent 20%)'
       },
       boxShadow: {
-        'custom-shadow': '1px 1px 50px rgba(138, 43, 226, 0.4);',
+        'custom-shadow': '1px 1px 50px rgba(30, 64, 176, 0.7);',
       },
     },
   },
