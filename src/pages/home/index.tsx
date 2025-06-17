@@ -98,8 +98,9 @@ export function Home() {
           >
             {link.name.toUpperCase() === "CV" ? (
               <a
-                href="public/AndréLucasFernandesDeSouza.pdf" // coloque o currículo em /public/curriculo.pdf
+                href="/AndréLucasFernandesDeSouza.pdf" // coloque o currículo em /public/curriculo.pdf
                 download
+                target="_self"
               >
                 <p className="text-base md:text-lg" style={{ color: link.color }}>
                   CV 
