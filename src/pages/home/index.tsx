@@ -96,11 +96,22 @@ export function Home() {
             key={link.id}
             className=" bg-white mb-4 w-full py-2 rounded-lg select-none transition-transform hover:scale-105 cursor-pointer"
           >
-            <a href={link.url} target="blank">
-              <p className="text-base md:text-lg" style={{ color: link.color }}>
-                {link.name}
-              </p>
-            </a>
+            {link.name.toUpperCase() === "CV" ? (
+              <a
+                href="public/AndréLucasFernandesDeSouza.pdf" // coloque o currículo em /public/curriculo.pdf
+                download
+              >
+                <p className="text-base md:text-lg" style={{ color: link.color }}>
+                  CV 
+                </p>
+              </a>
+            ) : (
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                <p className="text-base md:text-lg" style={{ color: link.color }}>
+                  {link.name}
+                </p>
+              </a>
+            )}
           </section>
         ))}
 
